@@ -1,0 +1,91 @@
+// 0x2E30
+struct cerberus_extended_context
+{
+  _BYTE gap0[0x8];							// 0x00
+  cerberus_thread_context thread_context_1; // 0x08
+  _BYTE gap1[0xBD8];        				// 0xE8
+  encryption_struct encryption_struct; 		// 0xCC0
+  _BYTE gap2[0x70];							// 0x1528
+  cerberus_thread_context thread_context_3;	// 0x1598
+  _BYTE gap3[0xB8];							// 0x1678
+  cerberus_context init_context; 			// 0x1730
+  _BYTE gap4[0x5D8];						// 0x1830	
+  _QWORD https_client;						// 0x1E08 
+  _BYTE gap6[0x1000];						// 0x1E10
+};
+
+struct cerberus_context
+{
+  _BYTE gap0[0x18];							// 0x00
+  _BYTE initialised;						// 0x18
+  _BYTE gap1[0x7];							// 0x19
+  cerberus_thread_context thread_context;	// 0x20
+	
+}; // 0x100
+
+
+// 0xE0
+struct cerberus_thread_context
+{
+  cerberus_thread_context* ptr;		// 0x00
+  pthread_mutex_t thread_mutex_0;	// 0x08
+  _BYTE gap1[0x40];					// 0x30
+  _BYTE unk1;						// 0x70
+  _BYTE gap2[0x7];					// 0x71
+  pthread_mutex_t thread_mutex_1;   // 0x78
+  struct_a inner_struct;			// 0xA0
+  _BYTE gap3[0x8];					// 0xB0
+  pthread_mutex_t thread_mutex_2;	// 0xB8
+};
+
+
+struct struct_a
+{
+	struct_b* begin;					// 0x00
+	struct_b* end;						// 0x08
+};
+
+struct struct_b
+{
+  _BYTE gap0[0x28]; // 0x00
+  _QWORD qword28;   // 0x28
+  _BYTE gap1[0x20]; // 0x30
+};
+
+// 0x868
+struct encryption_struct
+{
+  _BYTE gap0[0x80]; 									// 0x00
+  _BYTE start_of_struct1;								// 0x80
+  _BYTE gap81[0x3FF];									// 0x81
+  _BYTE start_of_struct2;								// 0x480
+  _BYTE gap481[0x157];									// 0x481
+  encryption_struct_3 struct_3;							// 0x5D8
+  _BYTE gap5D9[0x198];									// 0x5F0
+  cerberus_thread_context thread_context;				// 0x788
+};
+
+// 0x18
+struct encryption_struct_3
+{
+  _BYTE gap0[0x18];
+};
+
+struct basic_string
+{
+  _QWORD size;				// 0x00
+  _BYTE gap0[0x08]; 		// 0x08
+  _DWORD unk0;				// 0x10
+  _DWORD reference_count; 	// 0x14
+  _BYTE buffer[0x01];		// 0x18
+}; // 0x20
+
+struct event_struct
+{
+  _QWORD index;			// 0x00
+  char* some_string;	// 0x08
+  _QWORD unk0;			// 0x10
+  _QWORD unk1;			// 0x18
+  _QWORD unk2;			// 0x20
+  _QWORD unk3;			// 0x28
+};
